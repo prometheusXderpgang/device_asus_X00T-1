@@ -78,17 +78,10 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
-    android.hardware.audio@2.0-service \
-    android.hardware.audio@4.0 \
     android.hardware.audio@4.0-impl \
-    android.hardware.audio.common@4.0 \
-    android.hardware.audio.common@4.0-util \
-    android.hardware.audio.effect@2.0-impl \
-    android.hardware.audio.effect@4.0 \
+    android.hardware.audio@2.0-service \
     android.hardware.audio.effect@4.0-impl \
     android.hardware.soundtrigger@2.1-impl \
-    android.hardware.soundtrigger@2.0-service \
     audio.a2dp.default \
     audio.primary.sdm660 \
     audio.r_submix.default \
@@ -351,27 +344,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     emmc_prop_init.sh \
     init.class_main.sh \
-    init.crda.sh \
-    init.mdm.sh \
-    init.qcom.class_core.sh \
-    init.qcom.coex.sh \
-    init.qcom.crashdata.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.efs.sync.sh \
     init.qcom.post_boot.sh \
-    init.qcom.sdio.sh \
     init.qcom.sensors.sh \
     init.qcom.sh \
-    init.qcom.syspart_fixup.sh \
     init.qcom.usb.sh \
-    init.qcom.wifi.sh \
-    init.qti.fm.sh \
     init.qti.ims.sh \
-    init.qti.qseecomd.sh \
-    qca6234-service.sh \
+    move_time_data.sh \
+    move_wifi_data.sh \
     fstab.qcom \
     init.msm.usb.configfs.rc \
-    init.qcom.factory.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
     init.target.rc \
@@ -394,9 +375,9 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    android.hardware.radio@1.0 \
-    android.hardware.radio@1.1 \
-    android.hardware.radio.deprecated@1.0 \
+    android.hardware.radio@1.2 \
+    android.hardware.radio.config@1.0 \
+    android.hardware.secure_element@1.0 \
     rild \
     librmnetctl \
     libxml2 \
@@ -426,6 +407,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
     $(LOCAL_PATH)/configs/sensors/android.hardware.sensors@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.sensors@1.0-service.rc
+
+# System properties
+-include $(LOCAL_PATH)/system_prop.mk
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -475,9 +459,6 @@ PRODUCT_PACKAGES += \
 # VNDK-SP:
 PRODUCT_PACKAGES += \
     vndk-sp
-
-PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v27/arm64/arch-arm64-armv8-a/shared/vndk-core/android.hardware.gnss@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.gnss@1.0-v27.so
 
 # WFD
 PRODUCT_PACKAGES += \
